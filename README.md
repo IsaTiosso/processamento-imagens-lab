@@ -55,4 +55,5 @@ As dependências utilizadas no projeto constam abaixo:
 ```text
 numpy==1.26.4
 matplotlib==3.8.3
-opencv-python==4.9.0.80 
+opencv-python==4.9.0.80
+scikit-learn==1.4.1.post1
