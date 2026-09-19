@@ -40,6 +40,12 @@ Sob a ótica de engenharia de software e inteligência artificial, este pipeline
 
 Em arquiteturas mais complexas de Visão Computacional (como Redes Neurais Convolucionais - CNNs), imagens limpas por meio de filtragem espacial e binarização otimizada reduzem drasticamente o ruído de fundo, permitindo que o modelo aprenda padrões geométricos e constelações com maior acurácia e menor custo computacional.
 
+O pipeline de processamento de imagens desenvolvido atua diretamente como a etapa fundamental de **Engenharia de Atributos (*Feature Engineering*)** e **Pré-processamento de Dados** para a Inteligência Artificial:
+
+1. **Redução de Dimensionalidade e Ruído:** As técnicas de Filtro Gaussiano, Otsu, K-means e Watershed removem a poluição visual do fundo celeste e isolam os pontos de interesse (estrelas e linhas).
+
+2. **Alimentação do Modelo:** Em uma etapa posterior de IA (como a utilização de Redes Neurais Convolucionais ou classificadores baseados em Machine Learning), essas imagens tratadas otimizam a convergência do modelo, permitindo que o algoritmo aprenda os padrões geométricos das constelações com maior acurácia e menor custo computacional.
+
 ---
 
 5. Arquivo de Requerimentos (`requirements.txt`)
