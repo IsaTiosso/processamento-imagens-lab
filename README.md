@@ -48,7 +48,15 @@ O pipeline de processamento de imagens desenvolvido atua diretamente como a etap
 
 ---
 
-5. Arquivo de Requerimentos (`requirements.txt`)
+5. Dataset Utilizado no Projeto
+
+Link: 
+
+https://noirlab.edu/public/education/constellations
+
+---
+
+6. Arquivo de Requerimentos (`requirements.txt`)
 
 As dependências utilizadas no projeto constam abaixo:
 
