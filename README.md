@@ -1,67 +1,61 @@
-**Processamento de Imagens de Constelações (NOIRLab)**
+# Detecção de Estrelas em Imagens de Constelações (NOIRLab)
 
+Projeto da disciplina **Processamento de Imagens e Sinais** (Prof. Dr. Vinicius Santos Andrade).
 
-Repositório desenvolvido para a atividade prática de processamento e análise de imagens astronômicas utilizando Python e Google Colab, integrando conceitos fundamentais de Visão Computacional e Processamento de Imagens.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IsaTiosso/processamento-imagens-lab/blob/main/processamento_imagens.ipynb)
 
-1. Integrantes da Equipe
+## Integrantes
 * Fernando Fleuri Barbosa
 * Isabela Xavier Tiosso
 * Matheus Eduardo Nunhez
 
-2. Descrição Detalhada do Projeto e Pipeline de Processamento
+## Problema
+Fotos de constelações têm milhares de estrelas fracas, Via Láctea, nebulosas, gradiente de fundo e ruído de sensor.
+Objetivo: **isolar as estrelas** e **destacar as estrelas principais** que desenham a constelação.
 
-O objetivo deste projeto é aplicar um pipeline de tratamento digital de imagens em fotografias de constelações celestes para mitigar ruídos de sensores e destacar elementos estruturais (estrelas e linhas de contorno).
+## Pipeline
 
+```
+imagem RGB ─► escala de cinza ─► FFT 2D ─► filtro passa-faixa gaussiano ─► IFFT
+                                          (tira fundo = baixa freq.
+                                           e ruído   = alta freq.)
+   ─► limiar k·σ robusto ─► abertura morfológica ─► componentes conexos
+   ─► centroide, área, fluxo de cada estrela ─► ranking das estrelas principais
+```
 
+| Etapa | Técnica | Parâmetros |
+|---|---|---|
+| Pré-processamento | RGB → cinza (luminância) | — |
+| **FFT** | passa-faixa gaussiano, com espelhamento de bordas | d0 = N/100, d1 = N/6 (ciclos/imagem) |
+| **Segmentação** | limiar mediana + k·1,4826·MAD; abertura 2×2; componentes 8-conexos | k = 5, área mín. = 3 px |
+| Decisão | ordenação por fluxo | top-12 |
 
----
+## Resultados (céu sintético com 60 estrelas conhecidas, F1)
 
+| Cenário | Gauss + Otsu (original) | FFT + Otsu | **FFT + k·σ** |
+|---|---|---|---|
+| limpo | 1,00 | 0,99 | **1,00** |
+| gradiente médio | 0,21 | 0,99 | **1,00** |
+| gradiente forte | 0,17 | 0,03 | **0,99** |
 
-3. Pipeline de Processamento de Imagem:
+Na foto real de Órion, as estrelas de maior fluxo incluem Rigel, Betelgeuse e Bellatrix. Sem a FFT, a “estrela” mais brilhante é a própria Via Láctea (uma região de 412 mil px).
+As figuras ficam em [`resultados/`](resultados/).
 
-->  **Aquisição e Entrada (`Google Colab Files`):** Carregamento dinâmico de imagens via upload do usuário no ambiente em nuvem do Colab.
+## Estrutura
+- `processamento_imagens.ipynb` — notebook principal (roda no Colab ou localmente)
+- `src/pipeline.py` — funções do pipeline
+- `tests/` — testes (`python -m pytest`)
+- `dados/` — imagens NOIRLab usadas (Órion, Escorpião)
+- `legado/` — notebook exploratório inicial (Otsu, K-means, Watershed, nitidez)
+- `construir_notebook.py` — regenera e executa o notebook
+- `apresentacao/` — slides e roteiro de fala
 
+## Dataset
+NOIRLab — Constellations: https://noirlab.edu/public/education/constellations
 
--> **Conversão de Espaço de Cores (`BGR para RGB`):** O OpenCV carrega as imagens nativamente no padrão BGR. Logo na entrada, realizamos a conversão para RGB para exibição correta e manipulação dos canais visuais.
-
-->  **Suavização e Redução de Ruído (`Filtro Gaussiano`):** Aplicação de uma matriz de convolução gaussiana ($5 \times 5$) para atenuar ruídos de alta frequência gerados por sensores fotográficos e preparar o sinal para as etapas de segmentação.
-
--> **Segmentação na Escala de Cinza e Limiarização de Otsu (`Thresholding`):** Conversão da imagem suavizada para escala de cinza seguida pelo método estatístico de Otsu, que analisa o histograma para calcular automaticamente o limiar ideal de separação, isolando os pontos de alta intensidade luminosa (estrelas e traços) do fundo escuro.
-
--> **Segmentação de Cores com K-means:** Aplicação do algoritmo de aprendizado não supervisionado *K-means Clustering* para agrupar os pixels com base em suas características cromáticas e de intensidade, segmentando a imagem em regiões distintas (ex: fundo celeste versus elementos em destaque).
-
--> **Segmentação com o Algoritmo Watershed:** Utilização da técnica baseada em morfologia matemática e linhas divisórias de águas (*Watershed*) para separar objetos sobrepostos ou contornar de forma precisa as estruturas das constelações e aglomerados estelares.
-
----
-
-4. Integração com IA e Visão Computacional
-
-Sob a ótica de engenharia de software e inteligência artificial, este pipeline serve como a camada essencial de **pré-processamento (*data preprocessing*)** e **extração de características (*feature extraction*)**. 
-
-Em arquiteturas mais complexas de Visão Computacional (como Redes Neurais Convolucionais - CNNs), imagens limpas por meio de filtragem espacial e binarização otimizada reduzem drasticamente o ruído de fundo, permitindo que o modelo aprenda padrões geométricos e constelações com maior acurácia e menor custo computacional.
-
-O pipeline de processamento de imagens desenvolvido atua diretamente como a etapa fundamental de **Engenharia de Atributos (*Feature Engineering*)** e **Pré-processamento de Dados** para a Inteligência Artificial:
-
-1. **Redução de Dimensionalidade e Ruído:** As técnicas de Filtro Gaussiano, Otsu, K-means e Watershed removem a poluição visual do fundo celeste e isolam os pontos de interesse (estrelas e linhas).
-
-2. **Alimentação do Modelo:** Em uma etapa posterior de IA (como a utilização de Redes Neurais Convolucionais ou classificadores baseados em Machine Learning), essas imagens tratadas otimizam a convergência do modelo, permitindo que o algoritmo aprenda os padrões geométricos das constelações com maior acurácia e menor custo computacional.
-
----
-
-5. Dataset Utilizado no Projeto
-
-Link: 
-
-https://noirlab.edu/public/education/constellations
-
----
-
-6. Arquivo de Requerimentos (`requirements.txt`)
-
-As dependências utilizadas no projeto constam abaixo:
-
-```text
-numpy==1.26.4
-matplotlib==3.8.3
-opencv-python==4.9.0.80
-scikit-learn==1.4.1.post1
+## Como rodar
+```bash
+pip install -r requirements.txt
+python -m pytest
+python construir_notebook.py
+```
