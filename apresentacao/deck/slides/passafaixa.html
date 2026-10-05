@@ -1,0 +1,29 @@
+<section id="passafaixa" data-transition="fade" style="background:#0B1020;color:#E9EDF5;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:4px;color:#F2B544;text-transform:uppercase">07 · Filtragem na frequência</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1">Passa-faixa gaussiano: g = IFFT( F · H )</h2>
+</div>
+<div style="display:flex;gap:20px;align-items:center">
+<div style="display:flex;flex-direction:column;gap:10px"><img src="/_blob/f4c80452630230cd2fe2a3b99934a703" alt="Máscara passa-baixa" style="width:200px;height:200px;object-fit:cover;border-radius:10px"><p style="font-size:24px;color:#B4BED2">passa-baixa</p></div>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:56px;color:#F2B544">×</p>
+<div style="display:flex;flex-direction:column;gap:10px"><img src="/_blob/3d1f27bfbdd31380bb89de7a271f72c7" alt="Máscara passa-alta" style="width:200px;height:200px;object-fit:cover;border-radius:10px"><p style="font-size:24px;color:#B4BED2">passa-alta</p></div>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:56px;color:#F2B544">=</p>
+<div style="display:flex;flex-direction:column;gap:10px"><img src="/_blob/9afcc8437f994b9f2bd72695c1f51ed1" alt="Máscara passa-faixa" style="width:200px;height:200px;object-fit:cover;border-radius:10px;border:3px solid #F2B544"><p style="font-size:24px;color:#F2B544">H passa-faixa</p></div>
+<div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 0 0 32px">
+<div style="background:#141B30;border-radius:12px;padding:22px 26px"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;color:#F2B544">d0 = N/100</p><p style="font-size:24px;color:#B4BED2">corta o fundo (&gt; 100 px)</p></div>
+<div style="background:#141B30;border-radius:12px;padding:22px 26px"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;color:#F2B544">d1 = N/6</p><p style="font-size:24px;color:#B4BED2">corta o ruído (~1 px)</p></div>
+<div style="background:#141B30;border-radius:12px;padding:22px 26px"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;color:#6FA8FF">gaussiano</p><p style="font-size:24px;color:#B4BED2">sem ringing do ideal</p></div>
+<div style="background:#141B30;border-radius:12px;padding:22px 26px"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;color:#6FA8FF">espelhamento</p><p style="font-size:24px;color:#B4BED2">sem vazamento nas bordas</p></div>
+</div>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="display:flex;flex-direction:column;gap:10px"><img src="/_blob/390ef7e0ca8412626f6b26655eeaf29f" alt="Original" style="width:280px;height:280px;object-fit:cover;border-radius:10px"><p style="font-size:24px;color:#B4BED2">original</p></div>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:56px;color:#8D97AD">−</p>
+<div style="display:flex;flex-direction:column;gap:10px"><img src="/_blob/25cc03e3f9734af0b69390a2fa26372c" alt="Fundo de baixa frequência removido" style="width:280px;height:280px;object-fit:cover;border-radius:10px"><p style="font-size:24px;color:#B4BED2">fundo removido</p></div>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:56px;color:#8D97AD">→</p>
+<div style="display:flex;flex-direction:column;gap:10px"><img src="/_blob/79b5ceb7fdea612253b7148df5fcd4a8" alt="Resultado: só estrelas" style="width:280px;height:280px;object-fit:cover;border-radius:10px;border:3px solid #F2B544"><p style="font-size:24px;color:#F2B544">só estrelas</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:0 0 0 32px"><p style="font-size:28px;line-height:1.4;color:#B4BED2">Passa-baixa na frequência = filtro Gaussiano no espaço.</p><p style="font-size:28px;line-height:1.4;color:#E9EDF5"><b>Convolução ↔ multiplicação.</b></p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#5E6883">08 · Fernando</p>
+<aside>FERNANDO — O filtro é a multiplicação de duas máscaras gaussianas: uma passa-baixa, que tira o ruído, e uma passa-alta, que tira o fundo. O produto é o passa-faixa, esse anel. Os cortes vêm do tamanho das estruturas: d0 igual a N sobre 100 remove tudo que é maior que uns 100 pixels, como nebulosas; d1 igual a N sobre 6 remove o ruído de 1 pixel. Usamos gaussiano em vez do ideal porque o corte abrupto gera anéis em volta das estrelas, o ringing. E espelhamos as bordas antes da FFT para evitar vazamento espectral. Embaixo, o efeito: tiramos esse fundo borrado e sobram só as estrelas. E um detalhe: o passa-baixa na frequência é o mesmo filtro gaussiano que o grupo usava no espaço, pelo teorema da convolução.</aside>
+</section>

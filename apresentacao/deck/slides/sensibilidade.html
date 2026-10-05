@@ -1,0 +1,15 @@
+<section id="sensibilidade" data-transition="fade" style="background:#0B1020;color:#E9EDF5;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:grid;grid-template-columns:1fr 820px;gap:72px;align-items:center">
+<div style="display:flex;flex-direction:column;gap:28px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:4px;color:#F2B544;text-transform:uppercase">09 · Parâmetros</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1">O limiar k decide entre ruído e estrela perdida</h2>
+<div style="display:flex;flex-direction:column;gap:0px">
+<div style="display:flex;gap:28px;padding:20px 0;border-bottom:1px solid #2A3452"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px;color:#6FA8FF;width:150px">k &lt; 4</p><p style="font-size:28px;line-height:1.35">ruído vira estrela: <b>precisão cai</b></p></div>
+<div style="display:flex;gap:28px;padding:20px 0;border-bottom:1px solid #2A3452"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px;color:#F2B544;width:150px">k = 5</p><p style="font-size:28px;line-height:1.35">ponto de equilíbrio, escolhido</p></div>
+<div style="display:flex;gap:28px;padding:20px 0"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px;color:#B4BED2;width:150px">k &gt; 10</p><p style="font-size:28px;line-height:1.35">estrelas fracas somem: <b>recall cai</b></p></div>
+</div>
+<p style="font-size:26px;line-height:1.4;color:#8D97AD">O corte d0 da FFT é estável de 5 a 60 ciclos/imagem (F1 ≈ 1); abaixo disso, o fundo volta.</p>
+</div>
+<img src="/_blob/bf95f4eaf28941f7a8066575e67744ed" alt="Gráfico de precisão e recall em função de k: precisão sobe de 0,12 em k=2 até 1 em k=4; recall fica em 1 e cai para 0,9 em k=14" style="width:820px;height:539px;object-fit:contain">
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#5E6883">13 · Fernando</p>
+<aside>FERNANDO — Quais parâmetros influenciam o resultado? O principal é o k do limiar. Com k baixo, o ruído passa e vira estrela falsa: a precisão despenca para 0,12 com k igual a 2. Com k alto, as estrelas fracas ficam abaixo do limiar e o recall cai. k igual a 5 fica no equilíbrio. O corte da FFT é mais tolerante: de 5 a 60 ciclos por imagem o F1 fica perto de 1. Abaixo disso o fundo volta. Agora a Isabela mostra o impacto de errar a segmentação.</aside>
+</section>

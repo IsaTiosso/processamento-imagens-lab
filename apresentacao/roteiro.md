@@ -2,22 +2,18 @@
 
 Cada um fala ~4 min. Ensaiem com cronômetro: abaixo de 10 ou acima de 15 zera 1 ponto.
 
-| # | Slide | Quem | Tempo | Pontos-chave da fala |
-|---|---|---|---|---|
-| 1 | Título | Isabela | 0:20 | Nomes, tema. |
-| 2 | Problema | Isabela | 1:10 | Foto do céu = milhares de estrelas fracas + Via Láctea + nebulosas + ruído. Queremos as estrelas, e destacar as principais. Uso real: *star trackers* de satélites fazem exatamente isso para se orientar. |
-| 3 | Dados | Isabela | 1:00 | NOIRLab, JPEG RGB 1280×1280, 8 bits. Histograma: quase tudo é céu escuro, estrelas são poucos pixels na cauda direita → isso vai importar na escolha do limiar. |
-| 4 | Pipeline | Isabela | 1:30 | Ler as caixas da esquerda para a direita. Frase-chave: “cada etapa depende da anterior; se a FFT não tira o fundo, o limiar marca a Via Láctea como estrela”. |
-| 5 | FFT espectro | Fernando | 1:40 | Transformamos a imagem em cinza. Centro do espectro = baixa frequência = fundo/nebulosa; meio = estrelas; bordas = ruído. Magnitude = quanto; fase = onde. Experimento: magnitude de Órion + fase de Escorpião → a imagem parece o Escorpião (faixas escuras, Antares). |
-| 6 | Passa-faixa | Fernando | 1:40 | g = IFFT(FFT·H). Gaussiano para não ter *ringing*. d0 tira fundo, d1 tira ruído. Mostrar o “fundo removido” e o resultado. Espelhamento das bordas: a FFT acha que a imagem se repete; sem isso aparece borda falsa. |
-| 7 | Segmentação | Matheus | 1:30 | ROI = cada estrela. Limiar k·σ robusto, abertura, componentes conexos. Sem FFT: 6517 regiões, metade da imagem branca. Otsu falha porque supõe duas classes de tamanho parecido. |
-| 8 | Comparação | Matheus | 1:00 | K-means separa por cor → nebulosa vira classe. Watershed separa estrelas grudadas mas precisa de boa binarização. FFT ataca a causa. |
-| 9 | Resultados | Fernando | 1:00 | Céu sintético com 60 estrelas conhecidas: F1 0,17 → 0,99. Gráfico de k: precisão × recall. |
-| 10 | Impacto | Isabela | 0:40 | Sem FFT, a “estrela nº 1” é a Via Láctea (412 mil px). Com FFT: Rigel, Betelgeuse, Bellatrix. |
-| 11 | Limitações | Matheus | 0:50 | Sírius saturada vira anel; aglomerados; JPEG. Próximo passo: casar triângulos com catálogo. Classificador antigo removido (dados aleatórios). |
-| 12 | Conclusão | Matheus | 0:40 | Fundo = baixa, estrela = média, ruído = alta. |
+Slides: https://claude.ai/artifact/CbzAFG1kvVSh4iNWmUYnGP (as falas completas estão nas notas de cada slide; dá para baixar em .pptx ou PDF)
 
-Total ≈ 13:40 com transições → cortem ou estiquem nos slides 5–9.
+| Slides | Quem | Tempo | Conteúdo |
+|---|---|---|---|
+| 1–4 | Isabela | ~3:30 | capa, problema, dados, pipeline |
+| 5–8 | Fernando | ~4:00 | ideia das faixas, espectro, fase, passa-faixa |
+| 9–11 | Matheus | ~3:00 | segmentação, zoom, comparação de métodos |
+| 12–13 | Fernando | ~1:30 | F1 no céu sintético, sensibilidade ao k |
+| 14 | Isabela | ~0:45 | impacto de uma segmentação errada |
+| 15–16 | Matheus | ~1:30 | limitações, conclusão |
+
+Total ≈ 14 min: ensaiem; se passar de 14:30, encurtem o slide 11.
 
 ## Perguntas prováveis do professor (todos devem saber)
 

@@ -1,0 +1,22 @@
+<section id="espectro" data-transition="fade" style="background:#0B1020;color:#E9EDF5;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:4px;color:#F2B544;text-transform:uppercase">05 · FFT 2D</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1">A imagem em cinza vira um mapa de frequências</h2>
+</div>
+<div style="display:flex;gap:40px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:14px"><img src="/_blob/390ef7e0ca8412626f6b26655eeaf29f" alt="Órion em cinza" style="width:480px;height:480px;object-fit:cover;border-radius:12px"><p style="font-size:26px;color:#B4BED2">f(x, y): Órion em cinza</p></div>
+<div style="display:flex;flex-direction:column;justify-content:center;height:480px"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:32px;color:#F2B544">FFT →</p></div>
+<div style="position:relative;width:480px;height:480px">
+<img src="/_blob/65d7c15ebce9f88c667afda00dc653b1" alt="Espectro de magnitude com o centro brilhante" style="position:absolute;left:0;top:0;width:480px;height:480px;object-fit:cover;border-radius:12px">
+<x-shape kind="ellipse" style="position:absolute;left:200px;top:200px;width:80px;height:80px;border:3px solid #F2B544"></x-shape>
+<p style="position:absolute;left:0;top:490px;width:480px;font-size:26px;color:#B4BED2">log(1 + |F(u, v)|): magnitude</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<div style="background:#141B30;border-radius:12px;padding:24px 28px;border-left:6px solid #F2B544"><p style="font-size:26px;line-height:1.35"><b>Centro brilhante</b> = DC, o brilho médio. Em volta, o fundo.</p></div>
+<div style="background:#141B30;border-radius:12px;padding:24px 28px;border-left:6px solid #6FA8FF"><p style="font-size:26px;line-height:1.35"><b>Halo difuso</b> = estrelas, pontos que espalham energia em muitas frequências.</p></div>
+<div style="background:#141B30;border-radius:12px;padding:24px 28px;border-left:6px solid #8D97AD"><p style="font-size:26px;line-height:1.35"><b>Cruz</b> = bordas da imagem; tratamos com espelhamento.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#5E6883">06 · Fernando</p>
+<aside>FERNANDO — Aqui está a FFT 2D da imagem em cinza. Mostramos o logaritmo da magnitude, senão só o centro aparece. O ponto brilhante no centro é o componente DC, o brilho médio da imagem. Logo em volta estão as baixas frequências, o fundo. O halo espalhado é a contribuição das estrelas: um ponto pequeno no espaço vira uma coisa larga na frequência. A linha em cruz aparece porque a FFT supõe que a imagem se repete, e as bordas não casam; por isso espelhamos as bordas antes de filtrar.</aside>
+</section>

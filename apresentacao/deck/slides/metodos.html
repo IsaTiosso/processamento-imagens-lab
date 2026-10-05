@@ -1,0 +1,25 @@
+<section id="metodos" data-transition="fade" style="background:#111833;color:#E9EDF5;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:4px;color:#6FA8FF;text-transform:uppercase">08 · Por que essa técnica</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1">Testamos três segmentações no mesmo recorte</h2>
+</div>
+<div style="display:flex;gap:32px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:18px;background:#0B1020;border-radius:16px;padding:28px">
+<img src="/_blob/dbc6e79b54992d28e3d617b51156b6e6" alt="K-means com 4 clusters" style="width:476px;height:340px;object-fit:cover;border-radius:10px">
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:40px;font-weight:700">K-means (K = 4)</h3>
+<p style="font-size:26px;line-height:1.4;color:#B4BED2">Agrupa por <b style="color:#E9EDF5">cor</b>. A nebulosa vira uma classe inteira; estrelas fracas somem no fundo.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:18px;background:#0B1020;border-radius:16px;padding:28px">
+<img src="/_blob/c8b42afdc67f444cafcf9fb312b9362f" alt="Watershed com contornos vermelhos" style="width:476px;height:340px;object-fit:cover;border-radius:10px">
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:40px;font-weight:700">Watershed</h3>
+<p style="font-size:26px;line-height:1.4;color:#B4BED2">Bom para <b style="color:#E9EDF5">separar estrelas grudadas</b>, mas depende de uma binarização inicial boa.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:18px;background:#0B1020;border-radius:16px;padding:28px;border:3px solid #F2B544">
+<img src="/_blob/d75f1c9af0d144c681e7050162677fde" alt="FFT mais limiar k sigma" style="width:470px;height:340px;object-fit:cover;border-radius:10px">
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:40px;font-weight:700;color:#F2B544">FFT + k·σ ✓</h3>
+<p style="font-size:26px;line-height:1.4;color:#B4BED2">Ataca a <b style="color:#E9EDF5">causa</b>: tira o fundo antes do limiar. Escolhido.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#5E6883">11 · Matheus</p>
+<aside>MATHEUS — Antes de chegar nessa solução, o grupo testou outras técnicas de segmentação, que estão no notebook. O K-means agrupa pixels por cor: a nebulosa vermelha vira uma classe inteira, e as estrelas fracas se misturam com o fundo. O Watershed é ótimo para separar estrelas que se tocam, mas ele precisa de uma binarização inicial boa, e esse era justamente o problema. A FFT com o limiar k sigma ataca a causa, que é o fundo, antes de binarizar. Por isso escolhemos. Um próximo passo seria usar o Watershed depois da FFT para separar aglomerados.</aside>
+</section>

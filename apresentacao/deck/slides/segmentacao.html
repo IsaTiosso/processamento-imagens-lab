@@ -1,0 +1,18 @@
+<section id="segmentacao" data-transition="fade" style="background:#0B1020;color:#E9EDF5;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:4px;color:#6FA8FF;text-transform:uppercase">08 · Segmentação</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1">Limiar só depois de tirar o fundo</h2>
+</div>
+<div style="display:flex;gap:48px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:14px"><img src="/_blob/6b8b76d4c19477faa8515c86f65b48e0" alt="Binarização sem FFT: metade da imagem branca" style="width:440px;height:440px;object-fit:cover;border-radius:12px;border:3px solid #FF7A66"><p style="font-size:26px;color:#FF7A66"><b>Sem FFT</b> · Gauss + Otsu</p><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:44px;font-weight:700">6.517 regiões</p></div>
+<div style="display:flex;flex-direction:column;gap:14px"><img src="/_blob/e2c454f85cfe97091bbf5f2697affb3d" alt="Binarização com FFT: estrelas isoladas" style="width:440px;height:440px;object-fit:cover;border-radius:12px;border:3px solid #F2B544"><p style="font-size:26px;color:#F2B544"><b>Com FFT</b> · k·σ robusto</p><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:44px;font-weight:700">1.861 estrelas</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:0px">
+<div style="padding:18px 0;border-bottom:1px solid #2A3452"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#8D97AD">1 · limiar</p><p style="font-size:28px">mediana + <b>k</b> · 1,4826 · MAD, k = 5</p></div>
+<div style="padding:18px 0;border-bottom:1px solid #2A3452"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#8D97AD">2 · morfologia</p><p style="font-size:28px">abertura 2×2 tira pixels soltos</p></div>
+<div style="padding:18px 0;border-bottom:1px solid #2A3452"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#8D97AD">3 · rotulagem</p><p style="font-size:28px">componentes 8-conexos, área ≥ 3 px</p></div>
+<div style="padding:18px 0"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#8D97AD">por que não Otsu?</p><p style="font-size:28px;line-height:1.35">Ele supõe duas classes parecidas. Aqui estrela é &lt; 5% dos pixels.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#5E6883">09 · Matheus</p>
+<aside>MATHEUS — Agora a segmentação. A região de interesse é cada estrela. À esquerda, o pipeline original do grupo: Gaussiano e Otsu direto na imagem. Metade da imagem fica branca, porque a Via Láctea é mais clara que o limiar: 6.517 regiões, quase todas lixo. À direita, depois da FFT: 1.861 estrelas isoladas. O limiar que usamos é a mediana mais k vezes o desvio robusto, calculado pela MAD; o 1,4826 converte MAD em desvio-padrão para ruído gaussiano. É o padrão de software de astronomia como o SExtractor. O Otsu falha porque ele supõe duas classes de tamanho parecido no histograma, e aqui as estrelas são menos de 5% dos pixels. Depois, uma abertura morfológica tira pixels isolados, e rotulamos componentes conexos com área mínima de 3 pixels.</aside>
+</section>
