@@ -1,9 +1,5 @@
 # Roteiro de apresentação (meta: 12 min — janela válida 10 a 15)
 
-Cada um fala ~4 min. Ensaiem com cronômetro: abaixo de 10 ou acima de 15 zera 1 ponto.
-
-Slides: https://claude.ai/artifact/CbzAFG1kvVSh4iNWmUYnGP (as falas completas estão nas notas de cada slide; dá para baixar em .pptx ou PDF)
-
 | Slides | Quem | Tempo | Conteúdo |
 |---|---|---|---|
 | 1–4 | Isabela | ~3:30 | capa, problema, dados, pipeline |
@@ -13,9 +9,6 @@ Slides: https://claude.ai/artifact/CbzAFG1kvVSh4iNWmUYnGP (as falas completas es
 | 14 | Isabela | ~0:45 | impacto de uma segmentação errada |
 | 15–16 | Matheus | ~1:30 | limitações, conclusão |
 
-Total ≈ 14 min: ensaiem; se passar de 14:30, encurtem o slide 11.
-
-## Perguntas prováveis do professor (todos devem saber)
 
 **Por que passa-faixa e não só passa-alta?** O passa-alta tira o fundo mas deixa o ruído de pixel, que vira milhares de “estrelas” falsas. O passa-baixa limita isso.
 
